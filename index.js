@@ -1,6 +1,6 @@
 'use strict';
 
-var phoneBook = require('./phoneBook');
+var phoneBook = require('./phone-book');
 
 // Добавляем записи
 phoneBook.add('Сергей', '7 999 6667778', 'gs@example.com');
@@ -23,13 +23,12 @@ phoneBook.remove('Олег');
 phoneBook.showTable();
 // Выводит
 // ┌─────────────┬────────────────────╥──────────────────┐
-// │ Имя         │ Телефон            ║ email            │
+// │ Имя │ Телефон ║ email │
 // ├─────────────┼────────────────────╫──────────────────┤
-// │ Сергей      │ +7 (999) 666-77-78 ║ gs@example.com   │
-// │ Сергей 2    │ +7 (999) 443-34-44 ║ gs@example.com   │
+// │ Сергей │ +7 (999) 666-77-78 ║ gs@example.com │
+// │ Сергей 2 │ +7 (999) 443-34-44 ║ gs@example.com │
 // └─────────────┴────────────────────╨──────────────────┘
 
-
 // Экспортируем записи, пример файла рядом
-phoneBook.export('./backup.csv');
+phoneBook.importFromCsv('./backup.csv');
 // Добавлено 4 контакта
