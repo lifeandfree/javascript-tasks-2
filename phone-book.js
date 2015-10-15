@@ -39,8 +39,8 @@ function isCorrectPhone(phone) {
 }
 
 function isCorrectEmail(email) {
-    return (/^([a-z0-9_\-]+\.)*[a-z0-9_\-]+@([a-z0-9][a-z0-9\-]*[a-z0-9]\.)+[a-z]{2,6}$/i)
-            .test(email);
+    return (/^([a-zа-я0-9_\-]+\.)*[a-zа-я0-9_\-]+@([a-zа-я0-9][a-zа-я0-9\-]*[a-zа-я0-9]\.)+[a-zа-я]{2,6}$/i)
+        .test(email);
 }
 
 function Person(name, phone, email) {
@@ -62,7 +62,7 @@ function countPaddingToOutput(name, phone, email) {
 }
 
 module.exports.find = function find(query) {
-    var findContactList = findContacts(query);
+    var findContactList = findContacts();
     if (query) {
         if (findContactList.length > 0) {
             findContactList.forEach(function (item, i, arr) {
@@ -80,11 +80,15 @@ module.exports.find = function find(query) {
 };
 
 function findContacts(query) {
+    if (!query) {
+        return [];
+    }
     var findContactList = [];
+    var queryToLowerCase = query.toLowerCase();
     for (var i = 0; i < phoneBook.length; i++) {
-        if (phoneBook[i].name.toLowerCase().indexOf(query.toLowerCase()) > -1 ||
-            phoneBook[i].phone.toLowerCase().indexOf(query.toLowerCase()) > -1 ||
-            phoneBook[i].email.toLowerCase().indexOf(query.toLowerCase()) > -1) {
+        if (phoneBook[i].name.toLowerCase().indexOf(queryToLowerCase) > -1 ||
+            phoneBook[i].phone.toLowerCase().indexOf(queryToLowerCase) > -1 ||
+            phoneBook[i].email.toLowerCase().indexOf(queryToLowerCase) > -1) {
             findContactList.push(phoneBook[i]);
         }
     }
