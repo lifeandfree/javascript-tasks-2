@@ -62,11 +62,12 @@ function countPaddingToOutput(name, phone, email) {
 }
 
 module.exports.find = function find(query) {
-    var findContactList = findContacts();
+    var findContactList = findContacts(query);
     if (query) {
         if (findContactList.length > 0) {
             findContactList.forEach(function (item, i, arr) {
-                console.log(item.name + ', ' + item.phone + ', ' + item.email);
+                console.log(phoneBook[item].name + ', ' + phoneBook[item].phone + ', ' +
+                    phoneBook[item].email);
             });
             console.log('Найдено ' + findContactList.length + ' записи');
         } else {
@@ -89,7 +90,7 @@ function findContacts(query) {
         if (phoneBook[i].name.toLowerCase().indexOf(queryToLowerCase) > -1 ||
             phoneBook[i].phone.toLowerCase().indexOf(queryToLowerCase) > -1 ||
             phoneBook[i].email.toLowerCase().indexOf(queryToLowerCase) > -1) {
-            findContactList.push(phoneBook[i]);
+            findContactList.push(i);
         }
     }
     return findContactList;
@@ -99,7 +100,7 @@ module.exports.remove = function remove(query) {
     var findContactList = findContacts(query);
     if (findContactList.length > 0) {
         for (var i = 0; i < findContactList.length; i++) {
-            phoneBook.splice(phoneBook.indexOf(findContactList[i]), 1);
+            phoneBook.splice(findContactList[i], 1);
         }
     }
     console.log('Удален ' + findContactList.length + ' контакт');
