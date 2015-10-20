@@ -97,13 +97,12 @@ function findContacts(query) {
 }
 
 module.exports.remove = function remove(query) {
-    if (query === '.') {
-        console.log('Удален ' + phoneBook.length + ' контакт');
-        phoneBook = [];
-        return;
-    }
+    query = query || '';
     var findContactList = findContacts(query);
     if (findContactList.length > 0) {
+        findContactList.sort(function (a, b) {
+            return b - a;
+        });
         for (var i = 0; i < findContactList.length; i++) {
             phoneBook.splice(findContactList[i], 1);
         }
