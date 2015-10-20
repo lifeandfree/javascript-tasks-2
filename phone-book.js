@@ -100,9 +100,7 @@ module.exports.remove = function remove(query) {
     query = query || '';
     var findContactList = findContacts(query);
     if (findContactList.length > 0) {
-        findContactList.sort(function (a, b) {
-            return b - a;
-        });
+        findContactList.reverse();
         for (var i = 0; i < findContactList.length; i++) {
             phoneBook.splice(findContactList[i], 1);
         }
