@@ -101,7 +101,7 @@ module.exports.remove = function remove(query) {
         console.log('Удален ' + phoneBook.length + ' контакт');
         phoneBook = [];
         return;
-    } 
+    }
     var findContactList = findContacts(query);
     if (findContactList.length > 0) {
         for (var i = 0; i < findContactList.length; i++) {
